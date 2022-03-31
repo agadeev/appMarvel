@@ -68,7 +68,6 @@
             this.fetchCharacters() 
         },
     }
-
     
 </script>
 
