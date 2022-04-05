@@ -16,7 +16,14 @@
             <div class="card">
 
               <div>
-                <img :src="el.thumbnail" class="card-img-top" :alt="el.name" />
+                <img :src="el.thumbnail" 
+
+                @load="setheight" 
+                :style="{ 
+                height: imageHeight + 'px' }" 
+
+                class="card-img-top" 
+                :alt="el.name" />
               </div>
 
               <div class="card-body">
@@ -62,6 +69,8 @@ export default {
       characters: [],
       characterIndex: 0,
       search: "",
+
+      imageHeight: null // My set size for image character 
     };
   },
 
@@ -75,11 +84,19 @@ export default {
     changeSearch: function (value) {
       this.search = value;
     },
+
+// My set size for image character 
+    setheight(event) {
+      let image = event.target;
+      this.imageHeight = image.clientWidth;
+    },
+//
+
   },
 
   computed: {
     character: function () {
-      return this.searchCharacters[this.characterIndex] || null;
+       return this.searchCharacters[this.characterIndex] || null;
     },
 
     searchCharacters: function () {
